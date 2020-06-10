@@ -2,7 +2,7 @@
   <div class="flex items-center w-full justify-center">
     <input
       v-model="sliderValue"
-      class="w-1/2 outline-none h-1 border-none bg-purple-300 appearance-none"
+      class="w-full px-1 sm:w-1/2 outline-none h-1 border-none bg-purple-300 appearance-none"
       type="range"
       min="200"
       max="1000"

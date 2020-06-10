@@ -24,6 +24,7 @@
         </li>
       </ul>
     </div>
+
     <input
       ref="search-input"
       v-model="newStreamName"
@@ -31,14 +32,14 @@
       tabindex="1"
       :autofocus="!suggestedResults.length"
       type="search"
-      class="py-2 px-4 flex-1 bg-purple-100 text-purple-800 font-black rounded-tl-lg rounded-bl-lg text-xl outline-none"
+      class="py-1 px-3 sm:py-2 sm:px-4 flex-1 bg-purple-100 text-purple-800 font-bold rounded-tl-lg rounded-bl-lg text-md md:text-xl outline-none"
       placeholder="Nombre de un canal..."
       @keydown.down="() => onTabPress()"
       @keydown.tab.prevent="() => onTabPress()"
     />
     <button
       tabindex="-1"
-      class="py-2 px-5 text-xl border border-purple-700 text-white bg-purple-700 rounded-tr-lg rounded-br-lg"
+      class="py-1 px-3 sm:py-2 sm:px-4 text-md md:text-xl border border-purple-700 text-white bg-purple-700 rounded-tr-lg rounded-br-lg"
       type="submit"
       @click.prevent="onAddStream"
     >

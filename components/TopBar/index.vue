@@ -63,8 +63,11 @@ export default {
 <style scoped lang="postcss">
 #top-bar {
   @apply fixed top-0;
-  @apply px-5 flex justify-center flex-col text-center w-full z-10 bg-purple-900 shadow-md;
+  @apply px-2 flex justify-center flex-col text-center w-full z-10 bg-purple-900 shadow-md;
   @apply transition transition-all duration-200 ease-in-out;
+  @screen sm {
+    @apply px-5;
+  }
   &.collapsed {
     transform: translateY(calc(-100% + theme('spacing.10')));
   }
