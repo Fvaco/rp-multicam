@@ -8,7 +8,7 @@
       :min="minWidth"
       :max="maxWidth"
     />
-    <div class="font-semibold text-purple-300 pl-2">{{ sliderValue }}px</div>
+    <div class="font-semibold text-purple-300 pl-2">{{ sliderPercent }}%</div>
   </div>
 </template>
 <script>
@@ -32,6 +32,9 @@ export default {
     }
   },
   computed: {
+    sliderPercent() {
+      return Math.round((this.width * 100) / this.maxWidth);
+    },
     sliderValue: {
       get() {
         return this.width;
