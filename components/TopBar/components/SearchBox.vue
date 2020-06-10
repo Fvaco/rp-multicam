@@ -1,5 +1,8 @@
 <template>
-  <form autocomplete="off" class="relative flex my-5 items-center">
+  <form
+    autocomplete="off"
+    class="relative flex my-5 mx-auto items-center w-full md:w-3/4"
+  >
     <div v-show="suggestedResults.length" class="suggestion-box">
       <ul>
         <li
@@ -32,14 +35,14 @@
       tabindex="1"
       :autofocus="!suggestedResults.length"
       type="search"
-      class="py-1 px-3 sm:py-2 sm:px-4 flex-1 bg-purple-100 text-purple-800 font-bold rounded-tl-lg rounded-bl-lg text-md md:text-xl outline-none"
+      class="py-1 px-4 sm:py-2 flex-1 bg-purple-100 text-purple-800 font-bold rounded-tl-lg rounded-bl-lg text-xl outline-none"
       placeholder="Nombre de un canal..."
       @keydown.down="() => onTabPress()"
       @keydown.tab.prevent="() => onTabPress()"
     />
     <button
       tabindex="-1"
-      class="py-1 px-3 sm:py-2 sm:px-4 text-md md:text-xl border border-purple-700 text-white bg-purple-700 rounded-tr-lg rounded-br-lg"
+      class="py-1 px-3 sm:py-2 sm:px-4 text-xl border border-purple-700 text-white bg-purple-700 rounded-tr-lg rounded-br-lg"
       type="submit"
       @click.prevent="onAddStream"
     >

@@ -11,7 +11,12 @@
         @searchQueryAdded="hasSearchQuery = true"
         @searchQueryEmpty="hasSearchQuery = false"
       />
-      <WidthSlider :on-width-change="onWidthChange" :width="width" />
+      <WidthSlider
+        :on-width-change="onWidthChange"
+        :min-width="minWidth"
+        :max-width="maxWidth"
+        :width="width"
+      />
     </div>
     <div
       class="text-purple-200 h-10 py-1 text-2xl flex items-center justify-center"
@@ -24,6 +29,14 @@
 export default {
   props: {
     width: {
+      type: Number,
+      required: true
+    },
+    minWidth: {
+      type: Number,
+      required: true
+    },
+    maxWidth: {
       type: Number,
       required: true
     },

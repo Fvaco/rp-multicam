@@ -1,11 +1,12 @@
 <template>
   <div class="flex items-center w-full justify-center">
     <input
-      v-model="sliderValue"
-      class="w-full px-1 sm:w-1/2 outline-none h-1 border-none bg-purple-300 appearance-none"
+      v-model.number="sliderValue"
+      step="1"
+      class="w-full p-0 sm:w-1/2 outline-none h-1 border-none bg-purple-300 appearance-none"
       type="range"
-      min="200"
-      max="1000"
+      :min="minWidth"
+      :max="maxWidth"
     />
     <div class="font-semibold text-purple-300 pl-2">{{ sliderValue }}px</div>
   </div>
@@ -14,6 +15,14 @@
 export default {
   props: {
     width: {
+      type: Number,
+      required: true
+    },
+    minWidth: {
+      type: Number,
+      required: true
+    },
+    maxWidth: {
       type: Number,
       required: true
     },

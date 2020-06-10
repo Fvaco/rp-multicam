@@ -1,10 +1,9 @@
 <template>
-  <div
-    class=" min-h-screen min-w-screen"
-    @mousewheel.shift.exact="onZoomChange"
-  >
+  <div class="min-h-screen min-w-screen" @mousewheel.shift.exact="onZoomChange">
     <TopBar
       :width="width"
+      :min-width="minWidth"
+      :max-width="maxWidth"
       :add-stream="addStream"
       :on-width-change="onWidthChange"
       :is-streams-list-empty="isStreamsListEmpty"
@@ -19,7 +18,6 @@
       <StreamPlayerBox
         v-for="stream in streams"
         :key="stream.channel"
-        tabindex="-1"
         :class="{ 'pointer-events-none': isZoomActive }"
         :stream="stream"
         :width="width"
@@ -31,11 +29,15 @@
 
 <script>
 import { createStreamPlayers } from '~/lib/utils/createStreamPlayers';
+import { DEFAULT_MIN_WIDTH, DEFAULT_MAX_WIDTH } from '~/lib/constants';
+
 const SHIFT_KEY_CODE = 16;
 export default {
   data() {
     return {
-      width: 630,
+      width: DEFAULT_MIN_WIDTH,
+      maxWidth: DEFAULT_MAX_WIDTH,
+      minWidth: DEFAULT_MIN_WIDTH,
       isCollapsed: true,
       hasUnrendered: true,
       isZoomActive: false,
@@ -69,6 +71,14 @@ export default {
   },
   mounted() {
     this.addUnrederedStreams();
+    this.setMinAndMaxWidth();
+    const defaultWidth = Math.round((this.maxWidth - this.minWidth) * 0.6);
+    this.onWidthChange(this.maxWidth > 450 ? defaultWidth : this.maxWidth);
+
+    window.addEventListener('resize', _ => {
+      this.setMinAndMaxWidth();
+      this.onWidthChange(this.width);
+    });
     window.addEventListener('keydown', event => {
       const { keyCode } = event;
       if (keyCode === SHIFT_KEY_CODE) this.isZoomActive = true;
@@ -78,7 +88,11 @@ export default {
       if (keyCode === SHIFT_KEY_CODE) this.isZoomActive = false;
     });
   },
-  beforeDestroy() {
+  destroyed() {
+    window.addEventListener('resize', _ => {
+      this.setMinAndMaxWidth();
+      this.onWidthChange(this.width);
+    });
     window.addEventListener('keydown', event => {
       const { keyCode } = event;
       if (keyCode === SHIFT_KEY_CODE) this.isZoomActive = true;
@@ -89,13 +103,18 @@ export default {
     });
   },
   methods: {
+    setMinAndMaxWidth() {
+      this.maxWidth = Math.round(window.innerWidth * 0.9);
+      this.minWidth = Math.round(this.maxWidth * 0.2);
+    },
     setIsZoomActive(value) {
       this.isZoomActive = value;
     },
     onZoomChange(event) {
       const { deltaX } = event;
-      if (deltaX > 0 && this.width < 1000) this.onWidthChange(this.width + 50);
-      if ((deltaX < 0) & (this.width > 200))
+      if (deltaX > 0 && this.width < this.maxWidth)
+        this.onWidthChange(this.width + 50);
+      if ((deltaX < 0) & (this.width > this.minWidth))
         this.onWidthChange(this.width - 50);
     },
     addUnrederedStreams() {
@@ -116,7 +135,11 @@ export default {
     },
     onWidthChange(newWidthValue) {
       const safeWidthValue =
-        newWidthValue > 1000 ? 1000 : newWidthValue < 200 ? 200 : newWidthValue;
+        newWidthValue > this.maxWidth
+          ? this.maxWidth
+          : newWidthValue < this.minWidth
+          ? this.minWidth
+          : newWidthValue;
       this.width = safeWidthValue;
     },
     addStream(channelName) {
@@ -126,7 +149,7 @@ export default {
           ...this.streams,
           {
             width: '100%',
-            height: 200,
+            height: DEFAULT_MIN_WIDTH,
             channel: streamNameKey,
             rendered: false
           }

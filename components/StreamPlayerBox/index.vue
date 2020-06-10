@@ -1,5 +1,6 @@
 <template>
   <div
+    tabindex="-1"
     class="bg-purple-900 relative shadow-lg rounded-lg overflow-hidden m-1"
     :style="dimensionsStyle"
   >
