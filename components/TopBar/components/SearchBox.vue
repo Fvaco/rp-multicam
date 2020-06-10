@@ -1,7 +1,7 @@
 <template>
   <form
     autocomplete="off"
-    class="relative flex my-5 mx-auto items-center w-full md:w-3/4"
+    class="relative flex my-5 mx-auto items-center w-11/12 md:w-3/4"
   >
     <div v-show="suggestedResults.length" class="suggestion-box">
       <ul>
@@ -35,7 +35,7 @@
       tabindex="1"
       :autofocus="!suggestedResults.length"
       type="search"
-      class="py-1 px-4 sm:py-2 flex-1 bg-purple-100 text-purple-800 font-bold rounded-tl-lg rounded-bl-lg text-xl outline-none"
+      class="py-1 px-4 sm:py-2 flex-1 bg-purple-100 text-purple-800 font-medium rounded-tl-lg rounded-bl-lg text-xl outline-none"
       placeholder="Nombre de un canal..."
       @keydown.down="() => onTabPress()"
       @keydown.tab.prevent="() => onTabPress()"
