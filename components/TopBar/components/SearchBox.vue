@@ -37,13 +37,13 @@
       type="search"
       class="py-1 px-4 sm:py-2 flex-1 bg-purple-100 text-purple-800 font-medium rounded-tr-lg rounded-br-lg sm:rounded-tr-none sm:rounded-br-none  rounded-tl-lg rounded-bl-lg text-xl outline-none"
       placeholder="Nombre de un canal..."
-      @input="onNewStreamNameChange"
-      @keydown.down="() => onTabPress()"
-      @keydown.tab.prevent="() => onTabPress()"
+      @keydown="onNewStreamNameChange"
+      @keydown.down.exact="() => onTabPress()"
+      @keydown.tab.prevent.exact="() => onTabPress()"
     />
     <button
       tabindex="-1"
-      class="hidden sm:block py-1 px-3 sm:py-2 sm:px-4 text-xl border border-purple-700 text-white bg-purple-700 rounded-tr-lg rounded-br-lg"
+      class="hidden outline-none sm:block py-1 px-3 sm:py-2 sm:px-4 text-xl border border-purple-700 text-white bg-purple-700 rounded-tr-lg rounded-br-lg"
       type="submit"
       @click.prevent="onAddStream"
     >
