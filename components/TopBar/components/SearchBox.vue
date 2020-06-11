@@ -30,13 +30,14 @@
 
     <input
       ref="search-input"
-      v-model="newStreamName"
+      :value="newStreamName"
       minlength="1"
       tabindex="1"
       :autofocus="!suggestedResults.length"
       type="search"
       class="py-1 px-4 sm:py-2 flex-1 bg-purple-100 text-purple-800 font-medium rounded-tr-lg rounded-br-lg sm:rounded-tr-none sm:rounded-br-none  rounded-tl-lg rounded-bl-lg text-xl outline-none"
       placeholder="Nombre de un canal..."
+      @input="onNewStreamNameChange"
       @keydown.down="() => onTabPress()"
       @keydown.tab.prevent="() => onTabPress()"
     />
@@ -78,6 +79,9 @@ export default {
     }
   },
   methods: {
+    onNewStreamNameChange(event) {
+      this.newStreamName = event.target.value;
+    },
     onTabPress(index = -1, direction = 'down') {
       const isDown = direction === 'down';
       const targetRefIdx = isDown ? index + 1 : index - 1;
