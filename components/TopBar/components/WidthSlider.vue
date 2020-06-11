@@ -4,7 +4,7 @@
       v-model.number="sliderValue"
       step="1"
       type="range"
-      class="w-full sm:w-1/2"
+      class="w-full pl-4 sm:w-1/2 sm:p-0"
       :min="minWidth"
       :max="maxWidth"
     />

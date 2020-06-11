@@ -72,22 +72,19 @@ export default {
   computed: {
     isCollapsed: {
       get() {
-        if (this.isMobile)
-          return !this.isStreamsListEmpty && this.streamCollapsed;
-        return (
-          !this.sMobile &&
+        const isDesktopCollapsed =
           this.streamCollapsed &&
           !this.hasSearchQuery &&
-          !this.isStreamsListEmpty
-        );
+          !this.isStreamsListEmpty;
+        const isMobileCollapsed =
+          !this.isStreamsListEmpty && this.streamCollapsed;
+
+        return this.isMobile ? isMobileCollapsed : isDesktopCollapsed;
       },
       set(newValue) {
         this.streamCollapsed = newValue;
       }
     }
-  },
-  updated() {
-    console.log(this.isMobile);
   },
   mounted() {
     this.isMobile = getIsMobile();
