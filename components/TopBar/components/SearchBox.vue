@@ -37,7 +37,7 @@
       type="search"
       class="py-1 px-4 sm:py-2 flex-1 bg-purple-100 text-purple-800 font-medium rounded-tr-lg rounded-br-lg sm:rounded-tr-none sm:rounded-br-none  rounded-tl-lg rounded-bl-lg text-xl outline-none"
       placeholder="Nombre de un canal..."
-      @keydown="onNewStreamNameChange"
+      @input="onNewStreamNameChange"
       @keydown.down.exact="() => onTabPress()"
       @keydown.tab.prevent.exact="() => onTabPress()"
     />
@@ -67,7 +67,7 @@ export default {
   },
   computed: {
     suggestedResults() {
-      const clearedSearchQuery = this.newStreamName.trim();
+      const clearedSearchQuery = this.newStreamName.trim().toLowerCase();
       if (!clearedSearchQuery || clearedSearchQuery.length < 2) return [];
       return getCharactersByQuery(clearedSearchQuery);
     }
