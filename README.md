@@ -20,7 +20,7 @@ I'm a big fan of GTA V roleplay stories in Twtich since I've discovered them. On
 
 ### Live demo
 
-Try it yourself in rp-multicam.now.sh
+Try it yourself with this [live demo](https://rp-multicam.now.sh/)
 
 ## Build Setup
 
