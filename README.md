@@ -18,6 +18,10 @@ I'm a big fan of GTA V roleplay stories in Twtich since I've discovered them. On
   <img src="./static/gh-preview.gif">
 </p>
 
+### Live demo
+
+Try it yourself in rp-multicam.now.sh
+
 ## Build Setup
 
 ```bash
