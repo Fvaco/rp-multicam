@@ -18,9 +18,15 @@
           @keydown.tab.prevent.exact="() => onTabPress(index, 'down')"
           @keydown.shift.tab.exact.prevent="() => onTabPress(index, 'up')"
         >
-          <div class="text-lg font-semibold leading-none">
-            {{ result.name }}
+          <div class="font-semibold flex leading-none items-center">
+            <div class="text-lg">{{ result.name }}</div>
+            <div
+              class="ml-2 text-xs px-2 py-1 bg-purple-200 text-purple-800 rounded"
+            >
+              {{ result.server }}
+            </div>
           </div>
+
           <div class="font-semibold text-sm text-gray-600">
             @{{ result.channel }}
           </div>
@@ -106,8 +112,8 @@ export default {
 </script>
 <style lang="postcss" scoped>
 .suggestion-box {
-  @apply bg-white bg-purple-100 text-purple-900;
-  @apply absolute py-2 rounded-lg text-left overflow-y-auto;
+  @apply bg-purple-100 text-purple-900;
+  @apply absolute py-2 rounded text-left overflow-y-auto;
   top: 100%;
   max-height: 80vh;
 }
