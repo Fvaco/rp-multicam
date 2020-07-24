@@ -3,7 +3,7 @@
     autocomplete="off"
     class="relative flex my-5 mx-auto items-center w-11/12 md:w-3/4"
   >
-    <div v-show="suggestedResults.length" class="suggestion-box">
+    <!-- <div v-show="suggestedResults.length" class="suggestion-box">
       <ul>
         <li
           v-for="(result, index) in suggestedResults"
@@ -32,7 +32,7 @@
           </div>
         </li>
       </ul>
-    </div>
+    </div> -->
 
     <input
       ref="search-input"
