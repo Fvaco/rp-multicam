@@ -3,7 +3,7 @@
     autocomplete="off"
     class="relative flex my-5 mx-auto items-center w-11/12 md:w-3/4"
   >
-    <div v-show="suggestedResults.length" class="suggestion-box">
+    <!-- <div v-show="suggestedResults.length" class="suggestion-box">
       <ul>
         <li
           v-for="(result, index) in suggestedResults"
@@ -32,7 +32,7 @@
           </div>
         </li>
       </ul>
-    </div>
+    </div> -->
 
     <input
       ref="search-input"
@@ -41,8 +41,8 @@
       tabindex="1"
       :autofocus="!suggestedResults.length"
       type="search"
-      class="py-1 px-4 sm:py-2 flex-1 bg-purple-100 text-purple-800 font-medium rounded-tr-lg rounded-br-lg sm:rounded-tr-none sm:rounded-br-none  rounded-tl-lg rounded-bl-lg text-xl outline-none"
-      placeholder="Nombre de un canal..."
+      class=""
+      placeholder="Type the name of a channel..."
       @input="onNewStreamNameChange"
       @keydown.down.exact="() => onTabPress()"
       @keydown.tab.prevent.exact="() => onTabPress()"
@@ -111,6 +111,12 @@ export default {
 };
 </script>
 <style lang="postcss" scoped>
+input {
+  @apply py-1 px-4 flex-1 bg-purple-100 text-purple-800 font-medium rounded-tr-lg rounded-br-lg rounded-tl-lg rounded-bl-lg text-xl outline-none;
+  @screen sm {
+    @apply py-2 rounded-tr-none rounded-br-none;
+  }
+}
 .suggestion-box {
   @apply bg-purple-100 text-purple-900;
   @apply absolute py-2 rounded text-left overflow-y-auto;

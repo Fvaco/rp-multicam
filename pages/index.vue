@@ -13,7 +13,7 @@
         v-if="isStreamsListEmpty"
         class="absolute inset-0 text-3xl text-center text-purple-700 opacity-50 font-thin mt-56"
       >
-        Escribe el nombre de un canal para empezar 🚀
+        Type a channel name to start 🚀
       </div>
       <StreamPlayerBox
         v-for="stream in streams"
