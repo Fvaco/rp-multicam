@@ -1,14 +1,29 @@
 <template>
-  <div class="flex items-center w-full justify-center">
-    <input
-      v-model.number="sliderValue"
-      step="1"
-      type="range"
-      class="w-full pl-4 sm:w-1/2 sm:p-0"
-      :min="minWidth"
-      :max="maxWidth"
-    />
-    <div class="font-semibold text-purple-300 pl-2">{{ sliderPercent }}%</div>
+  <div>
+    <div
+      :style="sliderTooltipStyle"
+      class="flex text-xs rounded-full pointer-events-none justify-center items-center text-purple-200 font-bold"
+    >
+      <div>SCREENS SIZE ({{ sliderValue }}px)</div>
+    </div>
+    <div
+      class="flex w-full sm:w-full justify-center text-purple-200 font-semibold"
+    >
+      <div class="flex items-center w-full sm:w-1/2 sm:p-0">
+        <i class="mdi mdi-image-size-select-small pr-2"></i>
+        <div class="relative w-full pt-2">
+          <input
+            v-model.number="sliderValue"
+            step="1"
+            type="range"
+            class="w-full"
+            :min="minWidth"
+            :max="maxWidth"
+          />
+        </div>
+        <i class="mdi mdi-image-size-select-actual pl-2"></i>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -33,7 +48,15 @@ export default {
   },
   computed: {
     sliderPercent() {
-      return Math.round((this.width * 100) / this.maxWidth);
+      return Math.round(
+        ((this.width - this.minWidth) * 100) / (this.maxWidth - this.minWidth)
+      );
+    },
+    sliderTooltipStyle() {
+      return {
+        left: `calc(${this.sliderPercent}% - 0px)`,
+        bottom: 30 + 'px'
+      };
     },
     sliderValue: {
       get() {
