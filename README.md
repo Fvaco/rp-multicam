@@ -1,4 +1,4 @@
-# RP Twitch Multicamera
+# RP Twitch Multiscreen
 
 RP Twitch Multiscreen is web app to to watch any number of Twitch streams at the same time.
 
